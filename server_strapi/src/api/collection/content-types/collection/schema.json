@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "collections",
+  "info": {
+    "singularName": "collection",
+    "pluralName": "collections",
+    "displayName": "Collection",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "stickers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sticker.sticker",
+      "mappedBy": "collection"
+    }
+  }
+}

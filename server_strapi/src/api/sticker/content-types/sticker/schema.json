@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stickers",
+  "info": {
+    "singularName": "sticker",
+    "pluralName": "stickers",
+    "displayName": "Sticker",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "stickers": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "stickers"
+    },
+    "collection": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::collection.collection",
+      "inversedBy": "stickers"
+    }
+  }
+}
