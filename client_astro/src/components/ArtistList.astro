@@ -1,0 +1,13 @@
+---
+const { artists } = Astro.props;
+---
+
+<ul>
+    {
+        artists.map((artist) => (
+            <li>
+                <a href={`/artists/${artist.slug}`}>{artist.name}</a>
+            </li>
+        ))
+    }
+</ul>

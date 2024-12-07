@@ -1,0 +1,23 @@
+---
+import fetchApi from "../../lib/strapi";
+
+export async function getStaticPaths() {
+    const artists = await fetchApi({
+        endpoint: "artists",
+        wrappedByKey: "data",
+    });
+
+    const paths = artists.map((artist) => ({
+        params: { slug: artist.slug },
+        props: {
+            artist,
+        },
+    }));
+
+    return paths;
+}
+
+const { artist } = Astro.props;
+---
+
+<h2>{artist.name}</h2>
