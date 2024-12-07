@@ -28,21 +28,44 @@ const { sticker, prev, next } = Astro.props;
 <style>
     h2 {
         font-size: 2rem;
+        margin-block-end: 1rem;
     }
 
+    .sticker_container {
+        margin: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .categories {
+        font-size: 1.5rem;
+    }
 </style>
 
 <BaseLayout>
-    <h2>{sticker.name}</h2>
-    <p>
-        {
-            sticker.description
-                .map((paragraph) =>
-                    paragraph.children.map((child) => child.text).join(" "),
-                )
-                .join("")
-        }
-    </p>
-
+    <div class="sticker_container">
+        <div>
+            <h2>{sticker.name}</h2>
+            <p>
+                {
+                    sticker.description
+                        .map((paragraph) =>
+                            paragraph.children
+                                .map((child) => child.text)
+                                .join(" "),
+                        )
+                        .join("")
+                }
+            </p>
+            <p class="categories">
+                {
+                    sticker.categories
+                        ?.map((category) => category.name)
+                        .join(", ") || "None"
+                }
+            </p>
+        </div>
+        <img>
+    </div>
     <PrevNext prev={prev} next={next} path="stickers" />
 </BaseLayout>
