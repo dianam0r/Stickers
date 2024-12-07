@@ -9,7 +9,7 @@ export async function getStaticPaths() {
         wrappedByKey: "data",
     });
 
-    const paths = artists.map((artist) => ({
+    const paths = artists.map((artist,i) => ({
         params: { slug: artist.slug },
         props: {
             artist,
@@ -26,4 +26,4 @@ const { artist, prev, next } = Astro.props;
 
 <Header />
 <h2>{artist.name}</h2>
-<PrevNext prev={prev} next={next} path="artistst" />
+<PrevNext prev={prev} next={next} path="artists" />
