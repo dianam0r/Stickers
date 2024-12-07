@@ -1,0 +1,29 @@
+---
+import StickerCard from "./StickerCard.astro";
+const { stickers } = Astro.props;
+---
+
+<ul class="sticker_grid">
+    {
+        stickers.map((sticker) => {
+            const firstPhrase =
+                sticker.description[0]?.children[0]?.text.split(".")[0] + ".";
+
+            // Get the categories of the sticker
+            const categories = sticker.categories
+                ?.map((category) => category.name)
+                .join(", ");
+
+            return (
+                <li>
+                    <a href={`/stickers/${sticker.slug}`}>
+                        <StickerCard
+                            sticker={sticker}
+                            firstPhrase={firstPhrase}
+                        />
+                    </a>
+                </li>
+            );
+        })
+    }
+</ul>
