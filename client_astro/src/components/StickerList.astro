@@ -1,6 +1,6 @@
 ---
 import StickerCard from "./StickerCard.astro";
-const { stickers} = Astro.props;
+const { stickers, showCategory } = Astro.props;
 ---
 
 <ul class="sticker_grid">
@@ -11,16 +11,19 @@ const { stickers} = Astro.props;
 
             // Get the categories of the sticker
             const categories = sticker.categories
-                ?.map((category) => category.name)
+                ?.map((category) => category.slug)
                 .join(", ");
 
             return (
-                <li>
+                <li data-category={sticker.categories
+                        ?.map((c) => c.slug)
+                        .join(" ")}>
                     <a href={`/stickers/${sticker.slug}`}>
                         <StickerCard
                             sticker={sticker}
                             firstPhrase={firstPhrase}
                             categories={categories}
+                            showCategory={showCategory}
                         />
                     </a>
                 </li>

@@ -1,12 +1,15 @@
 ---
-const { sticker, firstPhrase, categories } = Astro.props;
+const { sticker, firstPhrase, categories, showCategory = true } = Astro.props;
 ---
 
-<strong>{sticker.name}</strong>
-<br />
-{firstPhrase}
-<br />
-<span class="categories">
-    Categories: {categories || "None"}
-</span>
-{sticker.category}
+<div>
+    <article>
+        <strong>{sticker.name}</strong>
+        <br />
+        {firstPhrase}
+        <br />
+        <span class="categories">
+            Categories: {categories || "None"}
+        </span>
+    </article>
+</div>

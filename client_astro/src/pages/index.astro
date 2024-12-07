@@ -4,13 +4,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image, Picture } from "astro:assets";
 import fetchApi from "../lib/strapi.js";
 import StickerList from "../components/StickerList.astro";
+import Filter from "../components/Filter.astro";
 
 const stickers = await fetchApi({
-    endpoint: "stickers", // the content type to fetch
-    wrappedByKey: "data", // the key to unwrap the response
-    query: { populate: ["categories"] }, // Populate the categories
+    endpoint: "stickers",
+    wrappedByKey: "data",
+    query: { populate: ["categories"] },
+});
+
+const categories = await fetchApi({
+    endpoint: "categories",
+    wrappedByKey: "data",
 });
 ---
+
 <BaseLayout>
-<StickerList stickers={stickers} />
+    <Filter categories={categories} />
+    <StickerList stickers={stickers} showCategory={false} />
 </BaseLayout>
