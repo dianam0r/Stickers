@@ -5,3 +5,4 @@ const stickers = await fetchApi({
     wrappedByKey: "data",
     query: { populate: ["categories"] },
 });
+filter wrap responsive

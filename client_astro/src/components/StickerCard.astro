@@ -1,26 +1,42 @@
 ---
 const { sticker, firstPhrase, categories, showCategory = true } = Astro.props;
-
 import { Image, Picture } from "astro:assets";
 ---
 
+<style>
+    .first_phrase {
+        font-size: 1.5rem;
+        padding-block-start: 1rem;
+    }
+
+    .categories {
+        background-color: rgba(218, 168, 59, 0.475);
+        color: rgb(218, 153, 79);
+        font-size: 1.5rem;
+        width: fit-content;
+        padding: 1rem;
+        border-radius: 2rem;
+        margin-block-start: 2rem;
+    }
+
+</style>
+
 <div>
     <article>
-        <strong>{sticker.name}</strong>
-        <br />
-        {firstPhrase}
-        <br />
-        <span class="categories">
-            Categories: {categories || "None"}
-        </span>
-        <Image
-            src={`${import.meta.env.STRAPI_URL}${sticker.stickers.url}`}
+        <h2><strong>{sticker.name}</strong></h2>
+        <p class="first_phrase">{firstPhrase}</p>
+        <p class="categories">
+            {categories || "None"}
+        </p>
+        <!--  -->
+        <!-- <Image
+            src={`${import.meta.env.STRAPI_URL}${sticker.stickers}`}
             alt="sticker image"
             width="300"
             height="400"
             widths={[250, 350, 500, 750]}
             format="avif"
             sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
-        />
+        /> -->
     </article>
 </div>
