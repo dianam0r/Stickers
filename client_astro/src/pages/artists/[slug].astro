@@ -1,0 +1,29 @@
+---
+import fetchApi from "../../lib/strapi";
+import PrevNext from "../../components/PrevNext.astro";
+import Header from "../../components/Header.astro";
+
+export async function getStaticPaths() {
+    const artists = await fetchApi({
+        endpoint: "artists",
+        wrappedByKey: "data",
+    });
+
+    const paths = artists.map((artist) => ({
+        params: { slug: artist.slug },
+        props: {
+            artist,
+            prev: i > 0 ? artists[i - 1] : null,
+            next: i < artists.length - 1 ? artists[i + 1] : null,
+        },
+    }));
+
+    return paths;
+}
+
+const { artist, prev, next } = Astro.props;
+---
+
+<Header />
+<h2>{artist.name}</h2>
+<PrevNext prev={prev} next={next} path="artistst" />

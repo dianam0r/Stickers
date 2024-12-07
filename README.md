@@ -1,4 +1,7 @@
 # Stickers
-netlify
-github thingy
-not put astro github/.env
+??Img and how it doesnt accept 2 thing in populate 
+const stickers = await fetchApi({
+    endpoint: "stickers",
+    wrappedByKey: "data",
+    query: { populate: ["categories"] },
+});
