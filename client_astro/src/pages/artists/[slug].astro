@@ -1,7 +1,7 @@
 ---
 import fetchApi from "../../lib/strapi";
 import PrevNext from "../../components/PrevNext.astro";
-import Header from "../../components/Header.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
     const artists = await fetchApi({
@@ -9,7 +9,7 @@ export async function getStaticPaths() {
         wrappedByKey: "data",
     });
 
-    const paths = artists.map((artist,i) => ({
+    const paths = artists.map((artist, i) => ({
         params: { slug: artist.slug },
         props: {
             artist,
@@ -24,6 +24,27 @@ export async function getStaticPaths() {
 const { artist, prev, next } = Astro.props;
 ---
 
-<Header />
-<h2>{artist.name}</h2>
-<PrevNext prev={prev} next={next} path="artists" />
+<style>
+    h2 {
+        font-size: 2rem;
+        margin-block-end: 1rem;
+    }
+
+    .sticker_container {
+        margin: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .categories {
+        font-size: 1.5rem;
+    }
+</style>
+
+<BaseLayout>
+    <div class="sticker_container">
+        <h2>{artist.name}</h2>
+        <p>{artist.sticker}</p>
+    </div>
+    <PrevNext prev={prev} next={next} path="artists" />
+</BaseLayout>

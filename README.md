@@ -6,3 +6,4 @@ const stickers = await fetchApi({
     query: { populate: ["categories"] },
 });
 filter wrap responsive
+artist.stickers doesnt work??

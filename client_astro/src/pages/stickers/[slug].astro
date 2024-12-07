@@ -32,14 +32,12 @@ const { sticker, prev, next } = Astro.props;
         margin-block-end: 1rem;
     }
 
-    .sticker_grid{
-        margin: 4rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+    .categories {
+        font-size: 1.5rem;
     }
 </style>
 <BaseLayout>
-    <div class="sticker_grid">
+    <div class="container_detail">
         <div>
             <h2>{sticker.name}</h2>
             <p>
@@ -62,7 +60,7 @@ const { sticker, prev, next } = Astro.props;
                 }
             </p>
         </div>
-        <img>
+        <img />
     </div>
     <PrevNext prev={prev} next={next} path="stickers" />
 </BaseLayout>

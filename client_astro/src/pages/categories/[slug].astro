@@ -1,8 +1,7 @@
 ---
 import fetchApi from "../../lib/strapi";
 import PrevNext from "../../components/PrevNext.astro";
-import Header from "../../components/Header.astro";
-
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
     const categories = await fetchApi({
@@ -25,6 +24,18 @@ export async function getStaticPaths() {
 const { category, prev, next } = Astro.props;
 ---
 
-<Header />
-<h2>{category.name}</h2>
-<PrevNext prev={prev} next={next} path="categories" />
+<style>
+    h2 {
+        font-size: 2rem;
+        margin-block-end: 1rem;
+    }
+</style>
+<BaseLayout>
+    <div>
+        <div class="container_detail">
+            <h2>{category.name}</h2>
+            <img />
+        </div>
+        <PrevNext prev={prev} next={next} path="categories" />
+    </div>
+</BaseLayout>

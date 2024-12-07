@@ -23,16 +23,17 @@ const { artists } = Astro.props;
         color: rgb(244, 227, 207);
     }
 
-    .categories>span{
+    .categories > span {
         margin-inline-end: 1rem;
     }
-
 </style>
 
 <ul>
     {
         artists.map((artist) => (
-            <li>
+            <li
+                data-category={artist.categories?.map((c) => c.slug).join(" ")}
+            >
                 <a href={`/artists/${artist.slug}`}>
                     <p>{artist.name}</p>
                     <p class="categories">
