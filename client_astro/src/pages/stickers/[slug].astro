@@ -26,6 +26,43 @@ export async function getStaticPaths() {
 const { sticker, prev, next } = Astro.props;
 ---
 
-<Header />
-<h2>{sticker.name}</h2>
-<PrevNext prev={prev} next={next} path="stickers" />
+<style>
+    h2 {
+        font-size: 2rem;
+        margin-block-end: 1rem;
+    }
+
+    .sticker_grid{
+        margin: 4rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+</style>
+<BaseLayout>
+    <div class="sticker_grid">
+        <div>
+            <h2>{sticker.name}</h2>
+            <p>
+                {
+                    sticker.description
+                        .map((paragraph) =>
+                            paragraph.children
+                                .map((child) => child.text)
+                                .join(" "),
+                        )
+                        .join("")
+                }
+            </p>
+
+            <p class="categories">
+                {
+                    sticker.categories
+                        ?.map((category) => category.name) // Replace `name` with `slug` if needed
+                        .join(", ") || "None"
+                }
+            </p>
+        </div>
+        <img>
+    </div>
+    <PrevNext prev={prev} next={next} path="stickers" />
+</BaseLayout>
