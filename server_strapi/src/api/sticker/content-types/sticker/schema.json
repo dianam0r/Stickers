@@ -38,11 +38,16 @@
       "target": "api::category.category",
       "inversedBy": "stickers"
     },
-    "collection": {
+    "artist": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::collection.collection",
+      "target": "api::artist.artist",
       "inversedBy": "stickers"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
     }
   }
 }

@@ -26,6 +26,12 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "artists": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::artist.artist",
+      "inversedBy": "categories"
     }
   }
 }

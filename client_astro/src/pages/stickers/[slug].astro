@@ -1,0 +1,23 @@
+---
+import fetchApi from "../../lib/strapi";
+
+export async function getStaticPaths() {
+    const stickers = await fetchApi({
+        endpoint: "stickers",
+        wrappedByKey: "data",
+    });
+
+    const paths = stickers.map((sticker) => ({
+        params: { slug: sticker.slug },
+        props: {
+            sticker,
+        },
+    }));
+
+    return paths;
+}
+
+const { sticker } = Astro.props;
+---
+
+<h2>{sticker.name}</h2>

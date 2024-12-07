@@ -1,10 +1,17 @@
 ---
 import Header from "../components/Header.astro";
+import { Image, Picture } from "astro:assets";
 import "../styles/reset.css";
 import "../styles/global.css";
-
+import fetchApi from "../lib/strapi.js";
 
 const { pageTitle } = Astro.props;
+
+const stickers = await fetchApi({
+	endpoint: "stickers", // the content type to fetch
+	wrappedByKey: "data", // the key to unwrap the response
+	query: { populate: ["categories"] }, // Populate the categories
+});
 ---
 
 <html lang="en">
@@ -29,7 +36,36 @@ const { pageTitle } = Astro.props;
 	<body>
 		<Header />
 		<main>
-			
+			<ul class="sticker_grid">
+				{
+					stickers.map((sticker) => {
+						// Get the first sentence of the description
+						const firstPhrase =
+							sticker.description[0]?.children[0]?.text.split(
+								".",
+							)[0] + ".";
+
+						// Get the categories of the sticker
+						const categories = sticker.categories
+							?.map((category) => category.name)
+							.join(", ");
+
+						return (
+							<li>
+								<a href={`/stickers/${sticker.slug}`}>
+									<strong>{sticker.name}</strong>
+									<br />
+									{firstPhrase}
+									<br />
+									<span class="categories">
+										Categories: {categories || "None"}
+									</span>
+								</a>
+							</li>
+						);
+					})
+				}
+			</ul>
 		</main>
 		<footer></footer>
 		<script></script>

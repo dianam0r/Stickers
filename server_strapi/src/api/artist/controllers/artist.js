@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * collection controller
+ * artist controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::collection.collection');
+module.exports = createCoreController('api::artist.artist');

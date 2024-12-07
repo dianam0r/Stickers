@@ -5,7 +5,6 @@ export async function getStaticPaths() {
     const categories = await fetchApi({
         endpoint: "categories",
         wrappedByKey: "data",
-        //query: { "populate[0]": "products", "populate[1]": "products.image" },
     });
 
     const paths = categories.map((category) => ({
