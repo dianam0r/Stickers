@@ -4,18 +4,31 @@ import { Image, Picture } from "astro:assets";
 ---
 
 <style>
+    .first_phrase {
+        font-size: 1.5rem;
+        padding-block-start: 1rem;
+    }
+
+    .categories {
+        background-color: rgba(218, 168, 59, 0.475);
+        color: rgb(218, 153, 79);
+        font-size: 1.5rem;
+        width: fit-content;
+        padding: 1rem;
+        border-radius: 2rem;
+        margin-block-start: 2rem;
+    }
 
 </style>
 
 <div>
     <article>
-        <strong>{sticker.name}</strong>
-        <!-- <br />
-        {firstPhrase}
-        <br />
-        <span class="categories">
-            Categories: {categories || "None"}
-        </span> -->
+        <h2><strong>{sticker.name}</strong></h2>
+        <p class="first_phrase">{firstPhrase}</p>
+        <p class="categories">
+            {categories || "None"}
+        </p>
+        <!--  -->
         <!-- <Image
             src={`${import.meta.env.STRAPI_URL}${sticker.stickers}`}
             alt="sticker image"
