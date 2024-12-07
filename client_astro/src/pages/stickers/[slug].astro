@@ -1,5 +1,6 @@
 ---
 import fetchApi from "../../lib/strapi";
+
 import PrevNext from "../../components/PrevNext.astro";
 import Header from "../../components/Header.astro";
 
@@ -27,4 +28,5 @@ const { sticker, prev, next } = Astro.props;
 
 <Header />
 <h2>{sticker.name}</h2>
+
 <PrevNext prev={prev} next={next} path="stickers" />
