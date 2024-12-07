@@ -2,6 +2,28 @@
 const { categories } = Astro.props;
 ---
 
+<style>
+    ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        font-size: 2rem;
+    }
+
+    ul > li:nth-child(2),
+    ul > li:nth-child(3),
+    ul > li:nth-child(6),
+    ul > li:nth-child(7),
+    ul > li:nth-child(10),
+    ul > li:nth-child(11) {
+        background-color: rgb(218, 167, 59);
+        color: rgb(244, 227, 207);
+    }
+
+    li {
+        padding: 2rem;
+        text-align: center;
+    }
+</style>
 <ul>
     {
         categories.map((category) => (
