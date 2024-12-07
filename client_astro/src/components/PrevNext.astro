@@ -3,18 +3,17 @@ const { prev, next, path } = Astro.props;
 ---
 
 <style>
-  nav {
-    background-color: white;
-    border-radius: var(--border-radius-xl);
-    margin-right: auto;
-    margin-left: auto;
-    padding: var(--s1) var(--s4);
-    max-width: var(--maxContent);
-  }
-
   ul {
     display: flex;
     justify-content: space-between;
+  }
+
+  li {
+    margin: 2rem;
+    background-color: rgb(218, 167, 59);
+    padding: 1rem;
+    border-radius: 2rem;
+    color: rgb(244, 227, 207);
   }
 
   .right {
