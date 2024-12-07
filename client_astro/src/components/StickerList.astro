@@ -1,6 +1,6 @@
 ---
 import StickerCard from "./StickerCard.astro";
-const { stickers } = Astro.props;
+const { stickers} = Astro.props;
 ---
 
 <ul class="sticker_grid">
@@ -20,6 +20,7 @@ const { stickers } = Astro.props;
                         <StickerCard
                             sticker={sticker}
                             firstPhrase={firstPhrase}
+                            categories={categories}
                         />
                     </a>
                 </li>

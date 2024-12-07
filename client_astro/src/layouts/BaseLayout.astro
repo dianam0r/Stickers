@@ -1,18 +1,10 @@
 ---
-import Header from "../components/Header.astro";
-import { Image, Picture } from "astro:assets";
 import "../styles/reset.css";
 import "../styles/global.css";
-import fetchApi from "../lib/strapi.js";
-import StickerList from "../components/StickerList.astro";
+import Header from "../components/Header.astro";
+import { ViewTransitions } from "astro:transitions";
 
 const { pageTitle } = Astro.props;
-
-const stickers = await fetchApi({
-	endpoint: "stickers", // the content type to fetch
-	wrappedByKey: "data", // the key to unwrap the response
-	query: { populate: ["categories"] }, // Populate the categories
-});
 ---
 
 <html lang="en">
@@ -32,14 +24,13 @@ const stickers = await fetchApi({
 
 		<title>Once upon a sticker</title>
 		<!-- Put then {pageTitle see what they did in astro id} -->
+		<ViewTransitions />
 	</head>
 
 	<body>
 		<Header />
 		<main>
-			<StickerList stickers={stickers}/>
+			<slot />
 		</main>
-		<footer></footer>
-		<script></script>
 	</body>
 </html>

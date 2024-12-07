@@ -1,7 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
+import { Image, Picture } from "astro:assets";
+import fetchApi from "../lib/strapi.js";
+import StickerList from "../components/StickerList.astro";
+
+const stickers = await fetchApi({
+    endpoint: "stickers", // the content type to fetch
+    wrappedByKey: "data", // the key to unwrap the response
+    query: { populate: ["categories"] }, // Populate the categories
+});
 ---
-
-<BaseLayout />
-
+<BaseLayout>
+<StickerList stickers={stickers} />
+</BaseLayout>
