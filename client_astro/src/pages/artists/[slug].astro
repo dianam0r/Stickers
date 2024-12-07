@@ -44,6 +44,7 @@ const { artist, prev, next } = Astro.props;
 <BaseLayout>
     <div class="sticker_container">
         <h2>{artist.name}</h2>
+        <p>{artist.sticker}</p>
     </div>
     <PrevNext prev={prev} next={next} path="artists" />
 </BaseLayout>
