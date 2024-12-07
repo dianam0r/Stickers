@@ -2,6 +2,47 @@
 const { categories } = Astro.props;
 ---
 
+<style>
+    ul {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        background-color: rgb(244, 227, 207);
+    }
+
+    .background {
+        background-color: rgb(218, 167, 59);
+        color: rgb(244, 227, 207);
+    }
+
+    li {
+        padding: 2rem;
+        border: 0.1rem solid rgb(244, 227, 207);
+        block-size: 3rem;
+        display: flex; /* Ensures content within <li> is flex-aligned */
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .selected {
+        color: rgb(218, 167, 59);
+        background-color: rgb(244, 227, 207);
+    }
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    ul > li:first-child {
+        color: rgb(218, 167, 59);
+        background-color: rgb(244, 227, 207);
+    }
+
+    strong {
+        font-weight: bold;
+    }
+</style>
+
 <script>
     const handleOptionChange = () => {
         const selection = [
@@ -23,6 +64,16 @@ const { categories } = Astro.props;
                 $li.classList.add("hidden");
             }
         });
+        document.querySelectorAll(".filteroption").forEach(($input) => {
+            const li = $input.closest("li");
+            if ($input.checked) {
+                li.classList.add("selected");
+                li.classList.remove("background");
+            } else {
+                li.classList.remove("selected");
+                li.classList.add("background");
+            }
+        });
     };
 
     document.addEventListener("astro:page-load", () => {
@@ -34,9 +85,10 @@ const { categories } = Astro.props;
 </script>
 
 <ul>
+    <li class="background"><strong>Filter</strong></li>
     {
         categories.map((category) => (
-            <li>
+            <li class="background">
                 <label>
                     <span>{category.name}</span>
                     <input

@@ -28,16 +28,8 @@ img {
 
 body {
   background-color: rgb(244, 227, 207);
-  margin: 3rem;
 }
 
-
-h1 {
-  font-family: "Cinzel", serif;
-  font-style: normal;
-  font-size: 7rem;
-  color: rgb(218, 167, 59);
-}
 
 a {
   text-decoration: none;
@@ -46,11 +38,7 @@ a {
 
 /* dont forget clamping and img responsive */
 
-.sticker_grid{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(7, 1fr);
-}
+
 
 .hidden{
   display: none;

@@ -3,7 +3,29 @@ import StickerCard from "./StickerCard.astro";
 const { stickers, showCategory } = Astro.props;
 ---
 
-<ul class="sticker_grid">
+<style>
+    ul {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        color: rgb(218, 167, 59);
+        align-items: center;
+        justify-items: center;
+    }
+
+    ul > li:nth-child(even) {
+        background-color: rgb(218, 167, 59);
+        color: rgb(244, 227, 207);
+    }
+
+    li {
+        font-size: 4rem;
+        inline-size: 100%;
+        block-size: 100%;
+        padding: 2rem;
+    }
+</style>
+
+<ul>
     {
         stickers.map((sticker) => {
             const firstPhrase =
@@ -15,9 +37,11 @@ const { stickers, showCategory } = Astro.props;
                 .join(", ");
 
             return (
-                <li data-category={sticker.categories
+                <li
+                    data-category={sticker.categories
                         ?.map((c) => c.slug)
-                        .join(" ")}>
+                        .join(" ")}
+                >
                     <a href={`/stickers/${sticker.slug}`}>
                         <StickerCard
                             sticker={sticker}
