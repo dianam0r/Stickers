@@ -2,11 +2,45 @@
 const { artists } = Astro.props;
 ---
 
+<style>
+    ul {
+        display: grid;
+        font-size: 2rem;
+    }
+
+    li {
+        padding: 3rem;
+    }
+
+    a {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    ul > li:nth-child(even) {
+        background-color: rgb(218, 167, 59);
+        color: rgb(244, 227, 207);
+    }
+
+    .categories>span{
+        margin-inline-end: 1rem;
+    }
+
+</style>
+
 <ul>
     {
         artists.map((artist) => (
             <li>
-                <a href={`/artists/${artist.slug}`}>{artist.name}</a>
+                <a href={`/artists/${artist.slug}`}>
+                    <p>{artist.name}</p>
+                    <p class="categories">
+                        {artist.categories?.map((category) => (
+                            <span>{category.name}</span>
+                        ))}
+                    </p>
+                </a>
             </li>
         ))
     }

@@ -12,6 +12,7 @@ const categories = await fetchApi({
 const artists = await fetchApi({
     endpoint: "artists",
     wrappedByKey: "data",
+    query: { populate: ["categories"] }
 });
 ---
 
