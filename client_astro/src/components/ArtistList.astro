@@ -1,5 +1,6 @@
 ---
 const { artists } = Astro.props;
+import { Image, Picture } from "astro:assets";
 ---
 
 <style>
@@ -19,7 +20,7 @@ const { artists } = Astro.props;
         flex-direction: row;
     }
 
-    .artist_categories>li{
+    .artist_categories > li {
         padding-inline-start: 1rem;
     }
 
@@ -39,6 +40,21 @@ const { artists } = Astro.props;
     .categories > span {
         margin-inline-end: 1rem;
     }
+
+    .artist_boxes__left {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .profile-image {
+        border-radius: 50%;
+        inline-size: 7rem;
+    }
+
+    .categories {
+        margin-block-start: 0rem;
+    }
 </style>
 
 <ul class="artist_list">
@@ -48,8 +64,18 @@ const { artists } = Astro.props;
                 class="artist_boxes"
                 data-category={artist.categories?.map((c) => c.slug).join(" ")}
             >
-                <a href={`/artists/${artist.slug}`}>
+                <a class="artist_boxes__left" href={`/artists/${artist.slug}`}>
                     <p>{artist.name}</p>
+                    <Image
+                        class="profile-image"
+                        src={`${import.meta.env.STRAPI_URL}${artist.profile_photo.url}`}
+                        alt="profile image"
+                        width="300"
+                        height="400"
+                        widths={[250, 350, 500, 750]}
+                        format="avif"
+                        sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+                    />
                 </a>
 
                 {artist.categories && (

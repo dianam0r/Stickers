@@ -1,5 +1,6 @@
 ---
-const { sticker, firstPhrase, categories, showCategory = true } = Astro.props;
+const { sticker, firstPhrase } = Astro.props;
+import { Image, Picture } from "astro:assets";
 ---
 
 <style>
@@ -8,12 +9,16 @@ const { sticker, firstPhrase, categories, showCategory = true } = Astro.props;
         padding-block-start: 1rem;
     }
 
-
+    .artist {
+        font-size: 2rem;
+        padding-block-start: 1rem;
+    }
 </style>
 
 <div>
     <article>
         <h2><strong>{sticker.name}</strong></h2>
         <p class="first_phrase">{firstPhrase}</p>
+        <a><p class="artist">by {sticker.artist.name}</p></a>
     </article>
 </div>
