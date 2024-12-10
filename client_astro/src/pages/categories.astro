@@ -5,24 +5,16 @@ import fetchApi from "../lib/strapi.js";
 import Filter from "../components/Filter.astro";
 import CategoryList from "../components/CategoryList.astro";
 
-const stickers = await fetchApi({
-    endpoint: "stickers",
-    wrappedByKey: "data",
-    query: { populate: ["categories"] },
-});
 
 const categories = await fetchApi({
     endpoint: "categories",
     wrappedByKey: "data",
+    query: {populate:["stickers"]}
 });
 
-const artists = await fetchApi({
-    endpoint: "artists",
-    wrappedByKey: "data",
-});
 ---
 
 <BaseLayout>
-    <Filter categories={categories}/>
-    <CategoryList categories={categories}/>
+    <Filter categories={categories} />
+    <CategoryList categories={categories} />
 </BaseLayout>

@@ -1,5 +1,6 @@
 ---
 const { categories } = Astro.props;
+import { Image, Picture } from "astro:assets";
 ---
 
 <style>
@@ -23,6 +24,24 @@ const { categories } = Astro.props;
         padding: 2rem;
         text-align: center;
     }
+
+    .category_stickers {
+        background-color: rgb(218, 168, 59);
+        color: #f4e3cf;
+        font-size: 1rem;
+        width: fit-content;
+        padding: 1rem;
+        border-radius: 2rem;
+        margin-block-start: 2rem;
+        border: 0.1rem solid rgb(244, 227, 207);
+    }
+
+    .div_category_stickers {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: center;
+    }
 </style>
 <ul>
     {
@@ -31,6 +50,14 @@ const { categories } = Astro.props;
                 <a href={`/categories/${category.slug}`}>
                     <p>{category.name}</p>
                 </a>
+                <div class="div_category_stickers">
+                    {category.stickers.map((sticker) => (
+                        <a href={`/stickers/${sticker.slug}`}>
+                            {" "}
+                            <p class="category_stickers">{sticker.name}</p>
+                        </a>
+                    ))}
+                </div>
             </li>
         ))
     }
