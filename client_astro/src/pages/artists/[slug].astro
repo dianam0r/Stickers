@@ -28,10 +28,9 @@ const { artist, prev, next } = Astro.props;
 
 <BaseLayout>
     <div class="artist_container">
-        <div class="artist_left_side">
+        <div class="artist_container__left">
             <h2>{artist.name}</h2>
             <Image
-                class="artist_photo"
                 src={`${import.meta.env.STRAPI_URL}${artist.profile_photo.url}`}
                 alt="sticker image"
                 width="300"
@@ -40,7 +39,7 @@ const { artist, prev, next } = Astro.props;
                 format="avif"
                 sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
             />
-            <div class="artist_left_side__categories">
+            <div class="left__categories">
                 {
                     artist.categories.map((category) => (
                         <a href={`/categories/${category.slug}`}>
@@ -52,15 +51,15 @@ const { artist, prev, next } = Astro.props;
                 }
             </div>
         </div>
-        <div class="artist_right_side">
+        <div class="artist_container__right">
             <p>{artist.description}</p>
-            <div class="artist_right_side__stickers">
+            <div class="right__stickers">
                 <p class="bold">Their stickers:</p>
-                <div class="artist_right_side__sticker_div">
+                <div class="right__stickers__artist">
                     {
                         artist.stickers.map((sticker) => (
                             <a href={`/stickers/${sticker.slug}`}>
-                                <p class="artist_right_side__sticker">
+                                <p>
                                     {artist.name}
                                 </p>
                             </a>
@@ -85,26 +84,20 @@ const { artist, prev, next } = Astro.props;
         grid-template-columns: 1fr 1fr;
         align-items: center;
         margin-inline: 4rem;
-    }
-
-    .categories {
-        font-size: 1.5rem;
-    }
-
-    .artist_right_side {
-        justify-self: center;
-        max-width: 20rem;
-    }
-
-    .artist_left_side {
-        justify-self: center;
-    }
-
-    .artist_container {
         background-color: #dca546;
         padding: 2rem;
         border-radius: 1rem;
         color: #f4e3cf;
+    }
+
+
+    .artist_container__right {
+        justify-self: center;
+        max-width: 20rem;
+    }
+
+    .artist_container__left {
+        justify-self: center;
     }
 
     .category_left_side__sticker {
@@ -118,17 +111,7 @@ const { artist, prev, next } = Astro.props;
         margin-block-start: 1rem;
     }
 
-    .artist_right_side__sticker {
-        color: #dca546;
-        background-color: #f4e3cf;
-        padding: 1rem;
-        border-radius: 2rem;
-        width: fit-content;
-        height: fit-content;
-        margin: 1rem;
-    }
-
-    .artist_right_side__sticker_div {
+    .right__stickers__artist {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -138,11 +121,11 @@ const { artist, prev, next } = Astro.props;
     .bold {
         font-weight: bold;
     }
-    .artist_right_side__stickers {
+    .right__stickers {
         padding-block-start: 1rem;
     }
 
-    .artist_left_side__categories {
+    .left__categories {
         display: flex;
         flex-direction: row;
     }
