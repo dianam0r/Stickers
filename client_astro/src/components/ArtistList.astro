@@ -3,13 +3,24 @@ const { artists } = Astro.props;
 ---
 
 <style>
-    ul {
+    .artist_list {
         display: grid;
         font-size: 2rem;
     }
 
-    li {
+    .artist_boxes {
         padding: 3rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .artist_categories {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .artist_categories>li{
+        padding-inline-start: 1rem;
     }
 
     a {
@@ -18,9 +29,11 @@ const { artists } = Astro.props;
         justify-content: space-between;
     }
 
-    ul > li:nth-child(even) {
+    .categories,
+    .artist_boxes:nth-child(even) {
         background-color: rgb(218, 167, 59);
         color: rgb(244, 227, 207);
+        border: 0.1rem solid rgb(244, 227, 207);
     }
 
     .categories > span {
@@ -28,20 +41,30 @@ const { artists } = Astro.props;
     }
 </style>
 
-<ul>
+<ul class="artist_list">
     {
         artists.map((artist) => (
             <li
+                class="artist_boxes"
                 data-category={artist.categories?.map((c) => c.slug).join(" ")}
             >
                 <a href={`/artists/${artist.slug}`}>
                     <p>{artist.name}</p>
-                    <p class="categories">
-                        {artist.categories?.map((category) => (
-                            <span>{category.name}</span>
-                        ))}
-                    </p>
                 </a>
+
+                {artist.categories && (
+                    <ul class="artist_categories">
+                        {artist.categories.map((category) => (
+                            <li>
+                                <a href={`/categories/${category.slug}`}>
+                                    <p class="categories">
+                                        {category.slug || "None"}
+                                    </p>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </li>
         ))
     }

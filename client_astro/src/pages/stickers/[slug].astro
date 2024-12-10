@@ -1,5 +1,6 @@
 ---
 import fetchApi from "../../lib/strapi";
+import { Image, Picture } from "astro:assets";
 
 import PrevNext from "../../components/PrevNext.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -53,15 +54,33 @@ const { sticker, prev, next } = Astro.props;
                 }
             </p>
 
-            <p class="categories">
-                {
-                    sticker.categories
-                        ?.map((category) => category.name) // Replace `name` with `slug` if needed
-                        .join(", ") || "None"
-                }
-            </p>
+            {
+                sticker.categories && sticker.categories.length > 0 ? (
+                    <ul class="categories-list">
+                        {sticker.categories.map((category) => (
+                            <li key={category.slug}>
+                                <a href={`/categories/${category.slug}`}>
+                                    <p class="categories">
+                                        {category.name || "Unnamed category"}
+                                    </p>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p class="categories">No categories assigned</p>
+                )
+            }
         </div>
-        <img />
+        <Image
+            src={`${import.meta.env.STRAPI_URL}${sticker.image.url}`}
+            alt="sticker image"
+            width="300"
+            height="400"
+            widths={[250, 350, 500, 750]}
+            format="avif"
+            sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+        />
     </div>
     <PrevNext prev={prev} next={next} path="stickers" />
 </BaseLayout>
