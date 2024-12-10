@@ -4,7 +4,7 @@ const { stickers, showCategory } = Astro.props;
 ---
 
 <style>
-    ul {
+    .stickerList {
         display: grid;
         grid-template-columns: 2fr 1fr 1fr;
         color: rgb(218, 167, 59);
@@ -13,13 +13,14 @@ const { stickers, showCategory } = Astro.props;
         grid-template-rows: repeat(6, 1fr);
     }
 
-    ul > li:nth-child(even) {
+    .categories,
+    .stickerList > li:nth-child(even) {
         background-color: rgb(218, 167, 59);
         color: rgb(244, 227, 207);
         border: 0.1rem solid rgb(244, 227, 207);
     }
 
-    li {
+    .sticker_boxes {
         font-size: 4rem;
         inline-size: 100%;
         block-size: 100%;
@@ -31,7 +32,7 @@ const { stickers, showCategory } = Astro.props;
         grid-column: 1;
         grid-row: 1/3;
     }
-ul > li:nth-child(13),
+    ul > li:nth-child(13),
     ul > li:nth-child(6) {
         grid-column: 1/4;
     }
@@ -41,25 +42,24 @@ ul > li:nth-child(13),
         grid-column: 2/4;
     }
 
-    ul > li:nth-child(14){
+    ul > li:nth-child(14) {
         grid-row: 8/10;
     }
-    
-
 </style>
 
-<ul>
+<ul class="stickerList">
     {
         stickers.map((sticker) => {
             const firstPhrase =
                 sticker.description[0]?.children[0]?.text.split(".")[0] + ".";
 
-            const categories = sticker.categories?.map((category) => 
-            category.slug)
+            const categories = sticker.categories
+                ?.map((category) => category.slug)
                 .join(" ");
 
             return (
                 <li
+                    class="sticker_boxes"
                     data-category={sticker.categories
                         ?.map((c) => c.slug)
                         .join(" ")}
@@ -72,6 +72,19 @@ ul > li:nth-child(13),
                             showCategory={showCategory}
                         />
                     </a>
+                    {sticker.categories && (
+                        <ul>
+                            {sticker.categories.map((category) => (
+                                <li>
+                                    <a href={`/categories/${category.slug}`}>
+                                        <p class="categories">
+                                            {category.slug || "None"}
+                                        </p>
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </li>
             );
         })

@@ -7,3 +7,5 @@ const stickers = await fetchApi({
 });
 filter wrap responsive
 artist.stickers doesnt work??
+
+vite

@@ -44,6 +44,11 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "mappedBy": "artists"
+    },
+    "description": {
+      "type": "text",
+      "unique": true,
+      "required": true
     }
   }
 }

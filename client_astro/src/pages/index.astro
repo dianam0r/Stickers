@@ -11,7 +11,7 @@ import ArtistList from "../components/ArtistList.astro";
 const stickers = await fetchApi({
     endpoint: "stickers",
     wrappedByKey: "data",
-    query: { populate: ["categories"] },
+    query: { populate: ["categories", "image"] },
 });
 
 const categories = await fetchApi({

@@ -16,12 +16,11 @@ import { Image, Picture } from "astro:assets";
     <article>
         <h2><strong>{sticker.name}</strong></h2>
         <p class="first_phrase">{firstPhrase}</p>
-        <p class="categories">
-            {categories || "None"}
-        </p>
+
         <!--  -->
+        
         <!-- <Image
-            src={`${import.meta.env.STRAPI_URL}${sticker.stickers}`}
+            src={`${import.meta.env.STRAPI_URL}${sticker.image.url}`}
             alt="sticker image"
             width="300"
             height="400"

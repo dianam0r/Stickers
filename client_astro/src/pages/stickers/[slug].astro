@@ -8,7 +8,7 @@ export async function getStaticPaths() {
     const stickers = await fetchApi({
         endpoint: "stickers",
         wrappedByKey: "data",
-        query: { populate: ["categories"] },
+        query: { populate: ["categories", "image"] },
     });
 
     const paths = stickers.map((sticker, i) => ({
@@ -36,6 +36,7 @@ const { sticker, prev, next } = Astro.props;
         font-size: 1.5rem;
     }
 </style>
+
 <BaseLayout>
     <div class="container_detail">
         <div>
