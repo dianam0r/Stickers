@@ -26,6 +26,53 @@ export async function getStaticPaths() {
 const { artist, prev, next } = Astro.props;
 ---
 
+<BaseLayout>
+    <div class="artist_container">
+        <div class="artist_left_side">
+            <h2>{artist.name}</h2>
+            <Image
+                class="artist_photo"
+                src={`${import.meta.env.STRAPI_URL}${artist.profile_photo.url}`}
+                alt="sticker image"
+                width="300"
+                height="400"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+            />
+            <div class="artist_left_side__categories">
+                {
+                    artist.categories.map((category) => (
+                        <a href={`/categories/${category.slug}`}>
+                            <p class="category_left_side__sticker">
+                                {category.name}
+                            </p>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+        <div class="artist_right_side">
+            <p>{artist.description}</p>
+            <div class="artist_right_side__stickers">
+                <p class="bold">Their stickers:</p>
+                <div class="artist_right_side__sticker_div">
+                    {
+                        artist.stickers.map((sticker) => (
+                            <a href={`/stickers/${sticker.slug}`}>
+                                <p class="artist_right_side__sticker">
+                                    {artist.name}
+                                </p>
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <PrevNext prev={prev} next={next} path="artists" />
+</BaseLayout>
+
 <style>
     h2 {
         font-size: 2rem;
@@ -100,50 +147,3 @@ const { artist, prev, next } = Astro.props;
         flex-direction: row;
     }
 </style>
-
-<BaseLayout>
-    <div class="artist_container">
-        <div class="artist_left_side">
-            <h2>{artist.name}</h2>
-            <Image
-                class="artist_photo"
-                src={`${import.meta.env.STRAPI_URL}${artist.profile_photo.url}`}
-                alt="sticker image"
-                width="300"
-                height="400"
-                widths={[250, 350, 500, 750]}
-                format="avif"
-                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
-            />
-            <div class="artist_left_side__categories">
-                {
-                    artist.categories.map((category) => (
-                        <a href={`/categories/${category.slug}`}>
-                            <p class="category_left_side__sticker">
-                                {category.name}
-                            </p>
-                        </a>
-                    ))
-                }
-            </div>
-        </div>
-        <div class="artist_right_side">
-            <p>{artist.description}</p>
-            <div class="artist_right_side__stickers">
-                <p class="bold">Their stickers:</p>
-                <div class="artist_right_side__sticker_div">
-                    {
-                        artist.stickers.map((sticker) => (
-                            <a href={`/stickers/${sticker.slug}`}>
-                                <p class="artist_right_side__sticker">
-                                    {artist.name}
-                                </p>
-                            </a>
-                        ))
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-    <PrevNext prev={prev} next={next} path="artists" />
-</BaseLayout>

@@ -2,6 +2,25 @@
 const { prev, next, path } = Astro.props;
 ---
 
+<nav>
+  <ul>
+    {
+      prev && (
+        <li>
+          <a href={`/${path}/${prev.slug}`}>Previous</a>
+        </li>
+      )
+    }
+    {
+      next && (
+        <li class="next">
+          <a href={`/${path}/${next.slug}`}>Next</a>
+        </li>
+      )
+    }
+  </ul>
+</nav>
+
 <style>
   ul {
     display: flex;
@@ -16,26 +35,7 @@ const { prev, next, path } = Astro.props;
     color: rgb(244, 227, 207);
   }
 
-  .right {
+  .next {
     margin-left: auto;
   }
 </style>
-
-<nav>
-  <ul>
-    {
-      prev && (
-        <li>
-          <a href={`/${path}/${prev.slug}`}>Previous</a>
-        </li>
-      )
-    }
-    {
-      next && (
-        <li class="right">
-          <a href={`/${path}/${next.slug}`}>Next</a>
-        </li>
-      )
-    }
-  </ul>
-</nav>

@@ -3,19 +3,36 @@ const { categories } = Astro.props;
 import { Image, Picture } from "astro:assets";
 ---
 
+<ul class="artist_list">
+    {
+        categories.map((category) => (
+            <li data-category={category.slug}>
+                <p>{category.name}</p>
+                <div class="artist_list__stickers">
+                    {category.stickers.map((sticker) => (
+                        <a href={`/stickers/${sticker.slug}`}>
+                            <p class="stickers__name">{sticker.name}</p>
+                        </a>
+                    ))}
+                </div>
+            </li>
+        ))
+    }
+</ul>
+
 <style>
-    ul {
+    .artist_list {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 45.8rem));
         font-size: 2rem;
     }
 
-    ul > li:nth-child(2),
-    ul > li:nth-child(3),
-    ul > li:nth-child(6),
-    ul > li:nth-child(7),
-    ul > li:nth-child(10),
-    ul > li:nth-child(11) {
+    .artist_list > li:nth-child(2),
+    .artist_list > li:nth-child(3),
+    .artist_list > li:nth-child(6),
+    .artist_list > li:nth-child(7),
+    .artist_list > li:nth-child(10),
+    .artist_list > li:nth-child(11) {
         background-color: rgb(218, 167, 59);
         color: rgb(244, 227, 207);
     }
@@ -25,7 +42,7 @@ import { Image, Picture } from "astro:assets";
         text-align: center;
     }
 
-    .category_stickers {
+    .stickers__name {
         background-color: rgb(218, 168, 59);
         color: #f4e3cf;
         font-size: 1rem;
@@ -36,29 +53,10 @@ import { Image, Picture } from "astro:assets";
         border: 0.1rem solid rgb(244, 227, 207);
     }
 
-    .div_category_stickers {
+    .artist_list__stickers {
         display: flex;
         flex-direction: row;
         gap: 1rem;
         justify-content: center;
     }
 </style>
-<ul>
-    {
-        categories.map((category) => (
-            <li data-category={category.slug}>
-                <a href={`/categories/${category.slug}`}>
-                    <p>{category.name}</p>
-                </a>
-                <div class="div_category_stickers">
-                    {category.stickers.map((sticker) => (
-                        <a href={`/stickers/${sticker.slug}`}>
-                            {" "}
-                            <p class="category_stickers">{sticker.name}</p>
-                        </a>
-                    ))}
-                </div>
-            </li>
-        ))
-    }
-</ul>

@@ -3,6 +3,16 @@ const { sticker, firstPhrase } = Astro.props;
 import { Image, Picture } from "astro:assets";
 ---
 
+<div>
+    <article>
+        <h2><strong>{sticker.name}</strong></h2>
+        <p class="first_phrase">{firstPhrase}</p>
+        <a href={`/artists/${sticker.artist.slug}`}
+            ><p class="artist">by {sticker.artist.name}</p></a
+        >
+    </article>
+</div>
+
 <style>
     .first_phrase {
         font-size: 1.5rem;
@@ -14,11 +24,3 @@ import { Image, Picture } from "astro:assets";
         padding-block-start: 1rem;
     }
 </style>
-
-<div>
-    <article>
-        <h2><strong>{sticker.name}</strong></h2>
-        <p class="first_phrase">{firstPhrase}</p>
-         <a href={`/artists/${sticker.artist.slug}`}><p class="artist">by {sticker.artist.name}</p></a>
-    </article>
-</div>

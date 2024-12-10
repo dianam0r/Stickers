@@ -27,23 +27,6 @@ export async function getStaticPaths() {
 const { sticker, prev, next } = Astro.props;
 ---
 
-<style>
-    h2 {
-        font-size: 2rem;
-        margin-block-end: 1rem;
-    }
-
-    .categories {
-        font-size: 1.5rem;
-    }
-
-    .categories_list {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-    }
-</style>
-
 <BaseLayout>
     <div class="container_detail">
         <div>
@@ -95,3 +78,20 @@ const { sticker, prev, next } = Astro.props;
     </div>
     <PrevNext prev={prev} next={next} path="stickers" />
 </BaseLayout>
+
+<style>
+    h2 {
+        font-size: 2rem;
+        margin-block-end: 1rem;
+    }
+
+    .categories {
+        font-size: 1.5rem;
+    }
+
+    .categories_list {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+</style>
