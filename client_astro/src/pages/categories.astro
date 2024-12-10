@@ -1,12 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-import { Image, Picture } from "astro:assets";
 import fetchApi from "../lib/strapi.js";
-import StickerList from "../components/StickerList.astro";
 import Filter from "../components/Filter.astro";
 import CategoryList from "../components/CategoryList.astro";
-import ArtistList from "../components/ArtistList.astro";
 
 const stickers = await fetchApi({
     endpoint: "stickers",
