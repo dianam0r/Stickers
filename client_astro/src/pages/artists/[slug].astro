@@ -55,11 +55,11 @@ const { artist, prev, next } = Astro.props;
             <p>{artist.description}</p>
             <div class="right__stickers">
                 <p class="bold">Their stickers:</p>
-                <div class="right__stickers__artist">
+                <div class="sticker__artists">
                     {
                         artist.stickers.map((sticker) => (
                             <a href={`/stickers/${sticker.slug}`}>
-                                <p>
+                                <p class="sticker__artists__name">
                                     {artist.name}
                                 </p>
                             </a>
@@ -90,6 +90,9 @@ const { artist, prev, next } = Astro.props;
         color: #f4e3cf;
     }
 
+    .categories {
+        font-size: 1.5rem;
+    }
 
     .artist_container__right {
         justify-self: center;
@@ -111,11 +114,22 @@ const { artist, prev, next } = Astro.props;
         margin-block-start: 1rem;
     }
 
-    .right__stickers__artist {
+    .sticker__artists__name {
+        color: #dca546;
+        background-color: #f4e3cf;
+        padding: 1rem;
+        border-radius: 2rem;
+        width: fit-content;
+        height: fit-content;
+        margin: 1rem;
+    }
+
+    .sticker__artists {
         display: flex;
         flex-direction: row;
         align-items: center;
         margin-block-start: 2rem;
+        flex-wrap: wrap;
     }
 
     .bold {

@@ -93,5 +93,13 @@ const { sticker, prev, next } = Astro.props;
         display: flex;
         flex-direction: row;
         gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .container_detail {
+        margin: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
     }
 </style>
