@@ -42,7 +42,7 @@ const { artist, prev, next } = Astro.props;
             <div class="left__categories">
                 {
                     artist.categories.map((category) => (
-                        <a href={`/categories/${category.slug}`}>
+                        <a href={`/categories`}>
                             <p class="category_left_side__sticker">
                                 {category.name}
                             </p>
@@ -60,7 +60,7 @@ const { artist, prev, next } = Astro.props;
                         artist.stickers.map((sticker) => (
                             <a href={`/stickers/${sticker.slug}`}>
                                 <p class="sticker__artists__name">
-                                    {artist.name}
+                                    {sticker.name}
                                 </p>
                             </a>
                         ))

@@ -38,10 +38,6 @@ a {
 }
 
 
-.hidden{
-  display: none;
-}
-
  .categories {
    background-color: rgba(218, 168, 59, 0.475);
    color: rgb(218, 153, 79);
@@ -52,5 +48,9 @@ a {
    margin-block-start: 2rem;
  }
 
+
+ .hidden {
+   display: none;
+ }
 
 

@@ -48,7 +48,7 @@ const { sticker, prev, next } = Astro.props;
                     <ul class="categories_list">
                         {sticker.categories.map((category) => (
                             <li>
-                                <a href={`/categories/${category.slug}`}>
+                                <a href={`/categories`}>
                                     <p class="categories">
                                         {category.name || "Unnamed category"}
                                     </p>
