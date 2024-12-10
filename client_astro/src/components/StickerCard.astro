@@ -19,6 +19,6 @@ import { Image, Picture } from "astro:assets";
     <article>
         <h2><strong>{sticker.name}</strong></h2>
         <p class="first_phrase">{firstPhrase}</p>
-        <a><p class="artist">by {sticker.artist.name}</p></a>
+         <a href={`/artists/${sticker.artist.slug}`}><p class="artist">by {sticker.artist.name}</p></a>
     </article>
 </div>

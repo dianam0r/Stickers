@@ -9,7 +9,7 @@ export async function getStaticPaths() {
     const stickers = await fetchApi({
         endpoint: "stickers",
         wrappedByKey: "data",
-        query: { populate: ["categories", "image"] },
+        query: { populate: ["categories", "image", "artist"] },
     });
 
     const paths = stickers.map((sticker, i) => ({
@@ -36,6 +36,12 @@ const { sticker, prev, next } = Astro.props;
     .categories {
         font-size: 1.5rem;
     }
+
+    .categories_list {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
 </style>
 
 <BaseLayout>
@@ -56,9 +62,9 @@ const { sticker, prev, next } = Astro.props;
 
             {
                 sticker.categories && sticker.categories.length > 0 ? (
-                    <ul class="categories-list">
+                    <ul class="categories_list">
                         {sticker.categories.map((category) => (
-                            <li key={category.slug}>
+                            <li>
                                 <a href={`/categories/${category.slug}`}>
                                     <p class="categories">
                                         {category.name || "Unnamed category"}
@@ -72,16 +78,20 @@ const { sticker, prev, next } = Astro.props;
                 )
             }
         </div>
-        <Image
-            src={`${import.meta.env.STRAPI_URL}${sticker.image.url}`}
-            alt="sticker image"
-            width="300"
-            height="400"
-            widths={[250, 350, 500, 750]}
-            format="avif"
-            sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
-        />
-        
+        <div>
+            <Image
+                src={`${import.meta.env.STRAPI_URL}${sticker.image.url}`}
+                alt="sticker image"
+                width="300"
+                height="400"
+                widths={[250, 350, 500, 750]}
+                format="avif"
+                sizes="(min-width: 2960px) calc(12.5vw - 118px), (min-width: 2600px) calc(5vw + 121px), (min-width: 2240px) calc(5.29vw + 131px), (min-width: 1900px) calc(5vw + 157px), (min-width: 1540px) calc(4.71vw + 180px), (min-width: 1160px) calc(3.33vw + 217px), (min-width: 1120px) calc(325vw - 3455px), (min-width: 760px) calc(3.53vw + 229px), (min-width: 540px) calc(42vw - 43px), calc(8.18vw + 225px)"
+            />
+            <a href={`/artists/${sticker.artist.slug}`}>
+                <p>by {sticker.artist.name}</p>
+            </a>
+        </div>
     </div>
     <PrevNext prev={prev} next={next} path="stickers" />
 </BaseLayout>
