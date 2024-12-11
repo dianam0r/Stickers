@@ -1,6 +1,6 @@
 ---
 import StickerCard from "./StickerCard.astro";
-const { stickers, showCategory } = Astro.props;
+const { stickers} = Astro.props;
 ---
 
 <ul class="sticker_list">
@@ -20,7 +20,6 @@ const { stickers, showCategory } = Astro.props;
                         <StickerCard
                             sticker={sticker}
                             firstPhrase={firstPhrase}
-                            showCategory={showCategory}
                         />
                     </a>
                     {sticker.categories && (

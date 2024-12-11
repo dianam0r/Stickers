@@ -1,6 +1,5 @@
 ---
-const { artists, showCategory } = Astro.props;
-import { Image, Picture } from "astro:assets";
+const { artists} = Astro.props;
 import ArtistCard from "./ArtistCard.astro";
 ---
 
@@ -12,7 +11,7 @@ import ArtistCard from "./ArtistCard.astro";
                 data-category={artist.categories?.map((c) => c.slug).join(" ")}
             >
                 <a class="li__artist" href={`/artists/${artist.slug}`}>
-                    <ArtistCard artist={artist} showCategory={showCategory} />
+                    <ArtistCard artist={artist} />
                 </a>
 
                 {artist.categories && (
